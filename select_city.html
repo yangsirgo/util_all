@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<link rel="stylesheet" href="http://x.autoimg.cn/com/co.ashx?path=|mall|2015|pc|css|common-26811.css,|mall|2015|pc|css|detail-63304.css">
+	<style>
+
+	</style>
+</head>
+<body>
+<div id="selectcity" class="select select-small selectcity">
+	<div class="select-value">
+		<span>请选择</span><i></i>
+	</div>
+	<div class="selectcity-list">
+		<div class="selectcity-tab">
+			<div class="selectcity-tab-header">
+				<ul class="fn-clear">
+					<li class="current"><a class="selectcity-tab-province" href="#" data-target="#selectcity-tab-content-province">请选择<i></i></a></li>
+					<li><a class="selectcity-tab-city" data-target="#selectcity-tab-content-city" href="#">请选择<i></i></a></li>
+				</ul>
+			</div>
+
+			<div class="selectcity-tab-content">
+				<div id="selectcity-tab-content-province" class="selectcity-tab-content-item selectcity-tab-content-province current">
+					<ul class="fn-clear"></ul>
+				</div>
+				<div id="selectcity-tab-content-city" class="selectcity-tab-content-item selectcity-tab-content-city">
+					<ul class="fn-clear"></ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="selectCityTip" class="detail-form-tip fn-hide"></div>
+</body>
+<script src="http://js.xcar.com.cn/common/1.7.2.min.js"></script>
+<script>
+	//城市数据
+	var citydata = [];
+
+	citydata[0]={value: "安徽", text: "安徽"};
+	citydata[0].city=[];
+	citydata[0].city[0]={ value: "340800", text: "安庆",allowInstallment:"0"};
+	citydata[0].city[1]={ value: "340300", text: "蚌埠",allowInstallment:"0"};
+	citydata[0].city[2]={ value: "341600", text: "亳州",allowInstallment:"0"};
+	citydata[0].city[3]={ value: "341100", text: "滁州",allowInstallment:"0"};
+	citydata[0].city[4]={ value: "341700", text: "池州",allowInstallment:"0"};
+	citydata[0].city[5]={ value: "341200", text: "阜阳",allowInstallment:"0"};
+	citydata[0].city[6]={ value: "340100", text: "合肥",allowInstallment:"0"};
+	citydata[0].city[7]={ value: "340400", text: "淮南",allowInstallment:"0"};
+	citydata[0].city[8]={ value: "340600", text: "淮北",allowInstallment:"0"};
+	citydata[0].city[9]={ value: "341000", text: "黄山",allowInstallment:"0"};
+	citydata[0].city[10]={ value: "341500", text: "六安",allowInstallment:"0"};
+	citydata[0].city[11]={ value: "340500", text: "马鞍山",allowInstallment:"0"};
+	citydata[0].city[12]={ value: "341300", text: "宿州",allowInstallment:"0"};
+	citydata[0].city[13]={ value: "340700", text: "铜陵",allowInstallment:"0"};
+	citydata[0].city[14]={ value: "340200", text: "芜湖",allowInstallment:"0"};
+	citydata[0].city[15]={ value: "341800", text: "宣城",allowInstallment:"0"};
+	citydata[1]={value: "北京", text: "北京"};
+	citydata[1].city=[];
+	citydata[1].city[0]={ value: "110100", text: "北京",allowInstallment:"0"};
+	citydata[2]={value: "重庆", text: "重庆"};
+	citydata[2].city=[];
+	citydata[2].city[0]={ value: "500100", text: "重庆",allowInstallment:"0"};
+	citydata[3]={value: "福建", text: "福建"};
+	citydata[3].city=[];
+	citydata[3].city[0]={ value: "350100", text: "福州",allowInstallment:"0"};
+	citydata[3].city[1]={ value: "350800", text: "龙岩",allowInstallment:"0"};
+	citydata[3].city[2]={ value: "350700", text: "南平",allowInstallment:"0"};
+	citydata[3].city[3]={ value: "350900", text: "宁德",allowInstallment:"0"};
+	citydata[3].city[4]={ value: "350300", text: "莆田",allowInstallment:"0"};
+	citydata[3].city[5]={ value: "350500", text: "泉州",allowInstallment:"0"};
+	citydata[3].city[6]={ value: "350400", text: "三明",allowInstallment:"0"};
+	citydata[3].city[7]={ value: "350200", text: "厦门",allowInstallment:"0"};
+	citydata[3].city[8]={ value: "350600", text: "漳州",allowInstallment:"0"};
+	citydata[4]={value: "贵州", text: "贵州"};
+	citydata[4].city=[];
+	citydata[4].city[0]={ value: "520400", text: "安顺",allowInstallment:"0"};
+	citydata[4].city[1]={ value: "520500", text: "毕节",allowInstallment:"0"};
+	citydata[4].city[2]={ value: "520100", text: "贵阳",allowInstallment:"0"};
+	citydata[4].city[3]={ value: "520200", text: "六盘水",allowInstallment:"0"};
+	citydata[4].city[4]={ value: "522300", text: "黔西南",allowInstallment:"0"};
+	citydata[4].city[5]={ value: "522600", text: "黔东南",allowInstallment:"0"};
+	citydata[4].city[6]={ value: "522700", text: "黔南",allowInstallment:"0"};
+	citydata[4].city[7]={ value: "520600", text: "铜仁",allowInstallment:"0"};
+	citydata[4].city[8]={ value: "520300", text: "遵义",allowInstallment:"0"};
+	citydata[5]={value: "广西", text: "广西"};
+	citydata[5].city=[];
+	citydata[5].city[0]={ value: "450500", text: "北海",allowInstallment:"0"};
+	citydata[5].city[1]={ value: "451000", text: "百色",allowInstallment:"0"};
+	citydata[5].city[2]={ value: "450300", text: "桂林",allowInstallment:"0"};
+	citydata[5].city[3]={ value: "450800", text: "贵港",allowInstallment:"0"};
+	citydata[5].city[4]={ value: "451200", text: "河池",allowInstallment:"0"};
+	citydata[5].city[5]={ value: "450200", text: "柳州",allowInstallment:"0"};
+	citydata[5].city[6]={ value: "450100", text: "南宁",allowInstallment:"0"};
+	citydata[5].city[7]={ value: "450700", text: "钦州",allowInstallment:"0"};
+	citydata[5].city[8]={ value: "450400", text: "梧州",allowInstallment:"0"};
+	citydata[6]={value: "甘肃", text: "甘肃"};
+	citydata[6].city=[];
+	citydata[6].city[0]={ value: "620400", text: "白银",allowInstallment:"0"};
+	citydata[6].city[1]={ value: "621100", text: "定西",allowInstallment:"0"};
+	citydata[6].city[2]={ value: "620900", text: "酒泉",allowInstallment:"0"};
+	citydata[6].city[3]={ value: "620100", text: "兰州",allowInstallment:"0"};
+	citydata[6].city[4]={ value: "620800", text: "平凉",allowInstallment:"0"};
+	citydata[6].city[5]={ value: "621000", text: "庆阳",allowInstallment:"0"};
+	citydata[6].city[6]={ value: "620500", text: "天水",allowInstallment:"0"};
+	citydata[6].city[7]={ value: "620600", text: "武威",allowInstallment:"0"};
+	citydata[6].city[8]={ value: "620700", text: "张掖",allowInstallment:"0"};
+	citydata[7]={value: "广东", text: "广东"};
+	citydata[7].city=[];
+	citydata[7].city[0]={ value: "445100", text: "潮州",allowInstallment:"0"};
+	citydata[7].city[1]={ value: "441900", text: "东莞",allowInstallment:"0"};
+	citydata[7].city[2]={ value: "440600", text: "佛山",allowInstallment:"0"};
+	citydata[7].city[3]={ value: "440100", text: "广州",allowInstallment:"0"};
+	citydata[7].city[4]={ value: "441300", text: "惠州",allowInstallment:"0"};
+	citydata[7].city[5]={ value: "441600", text: "河源",allowInstallment:"0"};
+	citydata[7].city[6]={ value: "440700", text: "江门",allowInstallment:"0"};
+	citydata[7].city[7]={ value: "445200", text: "揭阳",allowInstallment:"0"};
+	citydata[7].city[8]={ value: "440900", text: "茂名",allowInstallment:"0"};
+	citydata[7].city[9]={ value: "441800", text: "清远",allowInstallment:"0"};
+	citydata[7].city[10]={ value: "440200", text: "韶关",allowInstallment:"0"};
+	citydata[7].city[11]={ value: "440300", text: "深圳",allowInstallment:"0"};
+	citydata[7].city[12]={ value: "440500", text: "汕头",allowInstallment:"0"};
+	citydata[7].city[13]={ value: "441700", text: "阳江",allowInstallment:"0"};
+	citydata[7].city[14]={ value: "445300", text: "云浮",allowInstallment:"0"};
+	citydata[7].city[15]={ value: "440400", text: "珠海",allowInstallment:"0"};
+	citydata[7].city[16]={ value: "440800", text: "湛江",allowInstallment:"0"};
+	citydata[7].city[17]={ value: "441200", text: "肇庆",allowInstallment:"0"};
+	citydata[7].city[18]={ value: "442000", text: "中山",allowInstallment:"0"};
+	citydata[8]={value: "河南", text: "河南"};
+	citydata[8].city=[];
+	citydata[8].city[0]={ value: "410500", text: "安阳",allowInstallment:"0"};
+	citydata[8].city[1]={ value: "410600", text: "鹤壁",allowInstallment:"0"};
+	citydata[8].city[2]={ value: "410800", text: "焦作",allowInstallment:"0"};
+	citydata[8].city[3]={ value: "419001", text: "济源市",allowInstallment:"0"};
+	citydata[8].city[4]={ value: "410200", text: "开封",allowInstallment:"0"};
+	citydata[8].city[5]={ value: "410300", text: "洛阳",allowInstallment:"0"};
+	citydata[8].city[6]={ value: "411100", text: "漯河",allowInstallment:"0"};
+	citydata[8].city[7]={ value: "411300", text: "南阳",allowInstallment:"0"};
+	citydata[8].city[8]={ value: "410400", text: "平顶山",allowInstallment:"0"};
+	citydata[8].city[9]={ value: "410900", text: "濮阳",allowInstallment:"0"};
+	citydata[8].city[10]={ value: "411200", text: "三门峡",allowInstallment:"0"};
+	citydata[8].city[11]={ value: "411400", text: "商丘",allowInstallment:"0"};
+	citydata[8].city[12]={ value: "410700", text: "新乡",allowInstallment:"0"};
+	citydata[8].city[13]={ value: "411000", text: "许昌",allowInstallment:"0"};
+	citydata[8].city[14]={ value: "411500", text: "信阳",allowInstallment:"0"};
+	citydata[8].city[15]={ value: "410100", text: "郑州",allowInstallment:"0"};
+	citydata[8].city[16]={ value: "411600", text: "周口",allowInstallment:"0"};
+	citydata[8].city[17]={ value: "411700", text: "驻马店",allowInstallment:"0"};
+	citydata[9]={value: "河北", text: "河北"};
+	citydata[9].city=[];
+	citydata[9].city[0]={ value: "130600", text: "保定",allowInstallment:"0"};
+	citydata[9].city[1]={ value: "130900", text: "沧州",allowInstallment:"0"};
+	citydata[9].city[2]={ value: "130400", text: "邯郸",allowInstallment:"0"};
+	citydata[9].city[3]={ value: "131100", text: "衡水",allowInstallment:"0"};
+	citydata[9].city[4]={ value: "131000", text: "廊坊",allowInstallment:"0"};
+	citydata[9].city[5]={ value: "130300", text: "秦皇岛",allowInstallment:"0"};
+	citydata[9].city[6]={ value: "130100", text: "石家庄",allowInstallment:"0"};
+	citydata[9].city[7]={ value: "130200", text: "唐山",allowInstallment:"0"};
+	citydata[9].city[8]={ value: "130500", text: "邢台",allowInstallment:"0"};
+	citydata[9].city[9]={ value: "130700", text: "张家口",allowInstallment:"0"};
+	citydata[10]={value: "湖南", text: "湖南"};
+	citydata[10].city=[];
+	citydata[10].city[0]={ value: "430100", text: "长沙",allowInstallment:"0"};
+	citydata[10].city[1]={ value: "430700", text: "常德",allowInstallment:"0"};
+	citydata[10].city[2]={ value: "431000", text: "郴州",allowInstallment:"0"};
+	citydata[10].city[3]={ value: "430400", text: "衡阳",allowInstallment:"0"};
+	citydata[10].city[4]={ value: "431200", text: "怀化",allowInstallment:"0"};
+	citydata[10].city[5]={ value: "431300", text: "娄底",allowInstallment:"0"};
+	citydata[10].city[6]={ value: "430500", text: "邵阳",allowInstallment:"0"};
+	citydata[10].city[7]={ value: "430300", text: "湘潭",allowInstallment:"0"};
+	citydata[10].city[8]={ value: "430600", text: "岳阳",allowInstallment:"0"};
+	citydata[10].city[9]={ value: "430900", text: "益阳",allowInstallment:"0"};
+	citydata[10].city[10]={ value: "431100", text: "永州",allowInstallment:"0"};
+	citydata[10].city[11]={ value: "430200", text: "株洲",allowInstallment:"0"};
+	citydata[11]={value: "黑龙江", text: "黑龙江"};
+	citydata[11].city=[];
+	citydata[11].city[0]={ value: "230600", text: "大庆",allowInstallment:"0"};
+	citydata[11].city[1]={ value: "230100", text: "哈尔滨",allowInstallment:"0"};
+	citydata[11].city[2]={ value: "231100", text: "黑河",allowInstallment:"0"};
+	citydata[11].city[3]={ value: "230300", text: "鸡西",allowInstallment:"0"};
+	citydata[11].city[4]={ value: "230800", text: "佳木斯",allowInstallment:"0"};
+	citydata[11].city[5]={ value: "231000", text: "牡丹江",allowInstallment:"0"};
+	citydata[11].city[6]={ value: "230200", text: "齐齐哈尔",allowInstallment:"0"};
+	citydata[11].city[7]={ value: "230500", text: "双鸭山",allowInstallment:"0"};
+	citydata[11].city[8]={ value: "231200", text: "绥化",allowInstallment:"0"};
+	citydata[12]={value: "湖北", text: "湖北"};
+	citydata[12].city=[];
+	citydata[12].city[0]={ value: "422800", text: "恩施",allowInstallment:"0"};
+	citydata[12].city[1]={ value: "420200", text: "黄石",allowInstallment:"0"};
+	citydata[12].city[2]={ value: "421100", text: "黄冈",allowInstallment:"0"};
+	citydata[12].city[3]={ value: "420800", text: "荆门",allowInstallment:"0"};
+	citydata[12].city[4]={ value: "421000", text: "荆州",allowInstallment:"0"};
+	citydata[12].city[5]={ value: "420300", text: "十堰",allowInstallment:"0"};
+	citydata[12].city[6]={ value: "421300", text: "随州",allowInstallment:"0"};
+	citydata[12].city[7]={ value: "420100", text: "武汉",allowInstallment:"0"};
+	citydata[12].city[8]={ value: "420600", text: "襄阳",allowInstallment:"0"};
+	citydata[12].city[9]={ value: "420900", text: "孝感",allowInstallment:"0"};
+	citydata[12].city[10]={ value: "421200", text: "咸宁",allowInstallment:"0"};
+	citydata[12].city[11]={ value: "420500", text: "宜昌",allowInstallment:"0"};
+	citydata[13]={value: "海南", text: "海南"};
+	citydata[13].city=[];
+	citydata[13].city[0]={ value: "460100", text: "海口",allowInstallment:"0"};
+	citydata[13].city[1]={ value: "460200", text: "三亚",allowInstallment:"0"};
+	citydata[14]={value: "吉林", text: "吉林"};
+	citydata[14].city=[];
+	citydata[14].city[0]={ value: "220600", text: "白山",allowInstallment:"0"};
+	citydata[14].city[1]={ value: "220800", text: "白城",allowInstallment:"0"};
+	citydata[14].city[2]={ value: "220100", text: "长春",allowInstallment:"0"};
+	citydata[14].city[3]={ value: "220200", text: "吉林",allowInstallment:"0"};
+	citydata[14].city[4]={ value: "220300", text: "四平",allowInstallment:"0"};
+	citydata[14].city[5]={ value: "222400", text: "延边",allowInstallment:"0"};
+	citydata[15]={value: "江苏", text: "江苏"};
+	citydata[15].city=[];
+	citydata[15].city[0]={ value: "320400", text: "常州",allowInstallment:"0"};
+	citydata[15].city[1]={ value: "320800", text: "淮安",allowInstallment:"0"};
+	citydata[15].city[2]={ value: "320700", text: "连云港",allowInstallment:"0"};
+	citydata[15].city[3]={ value: "320100", text: "南京",allowInstallment:"0"};
+	citydata[15].city[4]={ value: "320600", text: "南通",allowInstallment:"0"};
+	citydata[15].city[5]={ value: "320500", text: "苏州",allowInstallment:"0"};
+	citydata[15].city[6]={ value: "321300", text: "宿迁",allowInstallment:"0"};
+	citydata[15].city[7]={ value: "321200", text: "泰州",allowInstallment:"0"};
+	citydata[15].city[8]={ value: "320200", text: "无锡",allowInstallment:"0"};
+	citydata[15].city[9]={ value: "320300", text: "徐州",allowInstallment:"0"};
+	citydata[15].city[10]={ value: "320900", text: "盐城",allowInstallment:"0"};
+	citydata[15].city[11]={ value: "321000", text: "扬州",allowInstallment:"0"};
+	citydata[15].city[12]={ value: "321100", text: "镇江",allowInstallment:"0"};
+	citydata[16]={value: "江西", text: "江西"};
+	citydata[16].city=[];
+	citydata[16].city[0]={ value: "361000", text: "抚州",allowInstallment:"0"};
+	citydata[16].city[1]={ value: "360700", text: "赣州",allowInstallment:"0"};
+	citydata[16].city[2]={ value: "360200", text: "景德镇",allowInstallment:"0"};
+	citydata[16].city[3]={ value: "360400", text: "九江",allowInstallment:"0"};
+	citydata[16].city[4]={ value: "360800", text: "吉安",allowInstallment:"0"};
+	citydata[16].city[5]={ value: "360100", text: "南昌",allowInstallment:"0"};
+	citydata[16].city[6]={ value: "360300", text: "萍乡",allowInstallment:"0"};
+	citydata[16].city[7]={ value: "361100", text: "上饶",allowInstallment:"0"};
+	citydata[16].city[8]={ value: "360500", text: "新余",allowInstallment:"0"};
+	citydata[16].city[9]={ value: "360600", text: "鹰潭",allowInstallment:"0"};
+	citydata[16].city[10]={ value: "360900", text: "宜春",allowInstallment:"0"};
+	citydata[17]={value: "辽宁", text: "辽宁"};
+	citydata[17].city=[];
+	citydata[17].city[0]={ value: "210300", text: "鞍山",allowInstallment:"0"};
+	citydata[17].city[1]={ value: "210500", text: "本溪",allowInstallment:"0"};
+	citydata[17].city[2]={ value: "211300", text: "朝阳",allowInstallment:"0"};
+	citydata[17].city[3]={ value: "210200", text: "大连",allowInstallment:"0"};
+	citydata[17].city[4]={ value: "210600", text: "丹东",allowInstallment:"0"};
+	citydata[17].city[5]={ value: "210400", text: "抚顺",allowInstallment:"0"};
+	citydata[17].city[6]={ value: "210900", text: "阜新",allowInstallment:"0"};
+	citydata[17].city[7]={ value: "211400", text: "葫芦岛",allowInstallment:"0"};
+	citydata[17].city[8]={ value: "210700", text: "锦州",allowInstallment:"0"};
+	citydata[17].city[9]={ value: "211000", text: "辽阳",allowInstallment:"0"};
+	citydata[17].city[10]={ value: "211100", text: "盘锦",allowInstallment:"0"};
+	citydata[17].city[11]={ value: "210100", text: "沈阳",allowInstallment:"0"};
+	citydata[17].city[12]={ value: "211200", text: "铁岭",allowInstallment:"0"};
+	citydata[17].city[13]={ value: "210800", text: "营口",allowInstallment:"0"};
+	citydata[18]={value: "内蒙古", text: "内蒙古"};
+	citydata[18].city=[];
+	citydata[18].city[0]={ value: "152900", text: "阿拉善盟",allowInstallment:"0"};
+	citydata[18].city[1]={ value: "150200", text: "包头",allowInstallment:"0"};
+	citydata[18].city[2]={ value: "150800", text: "巴彦淖尔",allowInstallment:"0"};
+	citydata[18].city[3]={ value: "150400", text: "赤峰",allowInstallment:"0"};
+	citydata[18].city[4]={ value: "150600", text: "鄂尔多斯",allowInstallment:"0"};
+	citydata[18].city[5]={ value: "150100", text: "呼和浩特",allowInstallment:"0"};
+	citydata[18].city[6]={ value: "150700", text: "呼伦贝尔",allowInstallment:"0"};
+	citydata[18].city[7]={ value: "150300", text: "乌海",allowInstallment:"0"};
+	citydata[18].city[8]={ value: "150900", text: "乌兰察布",allowInstallment:"0"};
+	citydata[18].city[9]={ value: "152200", text: "兴安盟",allowInstallment:"0"};
+	citydata[19]={value: "宁夏", text: "宁夏"};
+	citydata[19].city=[];
+	citydata[19].city[0]={ value: "640200", text: "石嘴山",allowInstallment:"0"};
+	citydata[19].city[1]={ value: "640300", text: "吴忠",allowInstallment:"0"};
+	citydata[19].city[2]={ value: "640100", text: "银川",allowInstallment:"0"};
+	citydata[20]={value: "青海", text: "青海"};
+	citydata[20].city=[];
+	citydata[20].city[0]={ value: "630100", text: "西宁",allowInstallment:"0"};
+	citydata[21]={value: "陕西", text: "陕西"};
+	citydata[21].city=[];
+	citydata[21].city[0]={ value: "610900", text: "安康",allowInstallment:"0"};
+	citydata[21].city[1]={ value: "610300", text: "宝鸡",allowInstallment:"0"};
+	citydata[21].city[2]={ value: "610700", text: "汉中",allowInstallment:"0"};
+	citydata[21].city[3]={ value: "610500", text: "渭南",allowInstallment:"0"};
+	citydata[21].city[4]={ value: "610100", text: "西安",allowInstallment:"0"};
+	citydata[21].city[5]={ value: "610400", text: "咸阳",allowInstallment:"0"};
+	citydata[21].city[6]={ value: "610600", text: "延安",allowInstallment:"0"};
+	citydata[21].city[7]={ value: "610800", text: "榆林",allowInstallment:"0"};
+	citydata[22]={value: "山东", text: "山东"};
+	citydata[22].city=[];
+	citydata[22].city[0]={ value: "371600", text: "滨州",allowInstallment:"0"};
+	citydata[22].city[1]={ value: "370500", text: "东营",allowInstallment:"0"};
+	citydata[22].city[2]={ value: "371400", text: "德州",allowInstallment:"0"};
+	citydata[22].city[3]={ value: "371700", text: "菏泽",allowInstallment:"0"};
+	citydata[22].city[4]={ value: "370100", text: "济南",allowInstallment:"0"};
+	citydata[22].city[5]={ value: "370800", text: "济宁",allowInstallment:"0"};
+	citydata[22].city[6]={ value: "371200", text: "莱芜",allowInstallment:"0"};
+	citydata[22].city[7]={ value: "371300", text: "临沂",allowInstallment:"0"};
+	citydata[22].city[8]={ value: "371500", text: "聊城",allowInstallment:"0"};
+	citydata[22].city[9]={ value: "370200", text: "青岛",allowInstallment:"0"};
+	citydata[22].city[10]={ value: "371100", text: "日照",allowInstallment:"0"};
+	citydata[22].city[11]={ value: "370900", text: "泰安",allowInstallment:"0"};
+	citydata[22].city[12]={ value: "370700", text: "潍坊",allowInstallment:"0"};
+	citydata[22].city[13]={ value: "371000", text: "威海",allowInstallment:"0"};
+	citydata[22].city[14]={ value: "370600", text: "烟台",allowInstallment:"0"};
+	citydata[22].city[15]={ value: "370300", text: "淄博",allowInstallment:"0"};
+	citydata[22].city[16]={ value: "370400", text: "枣庄",allowInstallment:"0"};
+	citydata[23]={value: "四川", text: "四川"};
+	citydata[23].city=[];
+	citydata[23].city[0]={ value: "511900", text: "巴中",allowInstallment:"0"};
+	citydata[23].city[1]={ value: "510100", text: "成都",allowInstallment:"0"};
+	citydata[23].city[2]={ value: "510600", text: "德阳",allowInstallment:"0"};
+	citydata[23].city[3]={ value: "511700", text: "达州",allowInstallment:"0"};
+	citydata[23].city[4]={ value: "510800", text: "广元",allowInstallment:"0"};
+	citydata[23].city[5]={ value: "511600", text: "广安",allowInstallment:"0"};
+	citydata[23].city[6]={ value: "510500", text: "泸州",allowInstallment:"0"};
+	citydata[23].city[7]={ value: "511100", text: "乐山",allowInstallment:"0"};
+	citydata[23].city[8]={ value: "513400", text: "凉山",allowInstallment:"0"};
+	citydata[23].city[9]={ value: "510700", text: "绵阳",allowInstallment:"0"};
+	citydata[23].city[10]={ value: "511400", text: "眉山",allowInstallment:"0"};
+	citydata[23].city[11]={ value: "511000", text: "内江",allowInstallment:"0"};
+	citydata[23].city[12]={ value: "511300", text: "南充",allowInstallment:"0"};
+	citydata[23].city[13]={ value: "510400", text: "攀枝花",allowInstallment:"0"};
+	citydata[23].city[14]={ value: "510900", text: "遂宁",allowInstallment:"0"};
+	citydata[23].city[15]={ value: "511500", text: "宜宾",allowInstallment:"0"};
+	citydata[23].city[16]={ value: "511800", text: "雅安",allowInstallment:"0"};
+	citydata[23].city[17]={ value: "510300", text: "自贡",allowInstallment:"0"};
+	citydata[23].city[18]={ value: "512000", text: "资阳",allowInstallment:"0"};
+	citydata[24]={value: "山西", text: "山西"};
+	citydata[24].city=[];
+	citydata[24].city[0]={ value: "140400", text: "长治",allowInstallment:"0"};
+	citydata[24].city[1]={ value: "140200", text: "大同",allowInstallment:"0"};
+	citydata[24].city[2]={ value: "140500", text: "晋城",allowInstallment:"0"};
+	citydata[24].city[3]={ value: "140700", text: "晋中",allowInstallment:"0"};
+	citydata[24].city[4]={ value: "141000", text: "临汾",allowInstallment:"0"};
+	citydata[24].city[5]={ value: "141100", text: "吕梁",allowInstallment:"0"};
+	citydata[24].city[6]={ value: "140600", text: "朔州",allowInstallment:"0"};
+	citydata[24].city[7]={ value: "140100", text: "太原",allowInstallment:"0"};
+	citydata[24].city[8]={ value: "140900", text: "忻州",allowInstallment:"0"};
+	citydata[24].city[9]={ value: "140300", text: "阳泉",allowInstallment:"0"};
+	citydata[24].city[10]={ value: "140800", text: "运城",allowInstallment:"0"};
+	citydata[25]={value: "上海", text: "上海"};
+	citydata[25].city=[];
+	citydata[25].city[0]={ value: "310100", text: "上海",allowInstallment:"0"};
+	citydata[26]={value: "天津", text: "天津"};
+	citydata[26].city=[];
+	citydata[26].city[0]={ value: "120100", text: "天津",allowInstallment:"0"};
+	citydata[27]={value: "台湾", text: "台湾"};
+	citydata[27].city=[];
+	citydata[27].city[0]={ value: "710100", text: "台湾",allowInstallment:"0"};
+	citydata[28]={value: "新疆", text: "新疆"};
+	citydata[28].city=[];
+	citydata[28].city[0]={ value: "652900", text: "阿克苏",allowInstallment:"0"};
+	citydata[28].city[1]={ value: "652800", text: "巴音郭楞",allowInstallment:"0"};
+	citydata[28].city[2]={ value: "652300", text: "昌吉",allowInstallment:"0"};
+	citydata[28].city[3]={ value: "650500", text: "哈密",allowInstallment:"0"};
+	citydata[28].city[4]={ value: "653100", text: "喀什",allowInstallment:"0"};
+	citydata[28].city[5]={ value: "659001", text: "石河子",allowInstallment:"0"};
+	citydata[28].city[6]={ value: "650100", text: "乌鲁木齐",allowInstallment:"0"};
+	citydata[28].city[7]={ value: "654000", text: "伊犁",allowInstallment:"0"};
+	citydata[29]={value: "云南", text: "云南"};
+	citydata[29].city=[];
+	citydata[29].city[0]={ value: "530500", text: "保山",allowInstallment:"0"};
+	citydata[29].city[1]={ value: "532300", text: "楚雄",allowInstallment:"0"};
+	citydata[29].city[2]={ value: "532900", text: "大理",allowInstallment:"0"};
+	citydata[29].city[3]={ value: "532500", text: "红河",allowInstallment:"0"};
+	citydata[29].city[4]={ value: "530100", text: "昆明",allowInstallment:"0"};
+	citydata[29].city[5]={ value: "530700", text: "丽江",allowInstallment:"0"};
+	citydata[29].city[6]={ value: "530900", text: "临沧",allowInstallment:"0"};
+	citydata[29].city[7]={ value: "530800", text: "普洱",allowInstallment:"0"};
+	citydata[29].city[8]={ value: "530300", text: "曲靖",allowInstallment:"0"};
+	citydata[29].city[9]={ value: "532600", text: "文山",allowInstallment:"0"};
+	citydata[29].city[10]={ value: "532800", text: "西双版纳",allowInstallment:"0"};
+	citydata[29].city[11]={ value: "530400", text: "玉溪",allowInstallment:"0"};
+	citydata[29].city[12]={ value: "530600", text: "昭通",allowInstallment:"0"};
+	citydata[30]={value: "浙江", text: "浙江"};
+	citydata[30].city=[];
+	citydata[30].city[0]={ value: "330100", text: "杭州",allowInstallment:"0"};
+	citydata[30].city[1]={ value: "330500", text: "湖州",allowInstallment:"0"};
+	citydata[30].city[2]={ value: "330400", text: "嘉兴",allowInstallment:"0"};
+	citydata[30].city[3]={ value: "330700", text: "金华",allowInstallment:"0"};
+	citydata[30].city[4]={ value: "330200", text: "宁波",allowInstallment:"0"};
+	citydata[30].city[5]={ value: "330800", text: "衢州",allowInstallment:"0"};
+	citydata[30].city[6]={ value: "330600", text: "绍兴",allowInstallment:"0"};
+	citydata[30].city[7]={ value: "331000", text: "台州",allowInstallment:"0"};
+	citydata[30].city[8]={ value: "330300", text: "温州",allowInstallment:"0"};
+	citydata[30].city[9]={ value: "330900", text: "舟山",allowInstallment:"0"};
+</script>
+<script>
+	!function() {
+		"use strict";
+		var t = function(t, e) {
+			var a = this;
+			a.options = e,
+					a.data = e.data,
+					a.defaultCity = e.defaultcity,
+					a.$elem = $(t),
+					a.$selectcityvalue = a.$elem.find(".select-value"),
+					a.$selectcitylist = a.$elem.find(".selectcity-list"),
+					a.$selectcityheader = a.$elem.find(".selectcity-tab-header"),
+					a.$provincetab = a.$elem.find(".selectcity-tab-province"),
+					a.$citytab = a.$elem.find(".selectcity-tab-city"),
+					a.$provincetabcontent = a.$elem.find(".selectcity-tab-content-province"),
+					a.$citytabcontent = a.$elem.find(".selectcity-tab-content-city"),
+					a.init()
+		};
+		t.prototype = {
+			init: function() {
+				var t = this;
+				t.$selectcityvalue.click(function() {
+					t.$selectcitylist.show(),
+							t.$elem.css("zIndex", 11)
+				}),
+						$(document).click(function(e) {
+							0 == $(e.target).closest(".selectcity-list").length && 0 == $(e.target).closest(".select-value").length && (t.$selectcitylist.hide(),
+									t.$elem.css("zIndex", 10))
+						}),
+						t.$selectcityheader.find("a").click(function() {
+							return t.$selectcityheader.find("li").removeClass("current"),
+									$(this).parent().addClass("current"),
+									t.$elem.find(".selectcity-tab-content-item").removeClass("current"),
+									$($(this).data("target")).addClass("current"),
+									!1
+						}),
+						t.$provincetabcontent.on("click", "a", function() {
+							var e = $(this);
+							return e.parent().hasClass("current") || (e.parent().siblings().removeClass("current"),
+									e.parent().addClass("current"),
+									t.initcitydata(t.getCityData(e.data("value"))),
+									t.$provincetab.html(e.text() + "<i></i>"),
+									t.$provincetab.data("value", e.data("value")),
+									t.$citytab.html("请选择<i></i>"),
+									t.$citytab.trigger("click")),
+									!1
+						}),
+						t.$citytabcontent.on("click", "a", function() {
+							var e = $(this);
+							e.parent().siblings().removeClass("current"),
+									e.parent().addClass("current"),
+									t.$citytab.html(e.text() + "<i></i>");
+							var a = e.text();
+							return e.text() != t.$provincetab.text() && (a = t.$provincetab.text() + " " + e.text()),
+									t.$selectcityvalue.find("span").text(a),
+									t.$selectcityvalue.data("cityvalue", e.data("value")),
+									t.$selectcityvalue.data("provincevalue", t.$provincetab.data("value")),
+									t.$selectcitylist.hide(),
+									t.$elem.css("zIndex", 10),
+									t.$elem.trigger("changed", t.getValue()),
+									!1
+						}),
+						t.initprovincedata(),
+				t.defaultCity && (t.$provincetabcontent.find("a[data-value=" + t.defaultCity.provinceId + "]").click(),
+						t.$citytabcontent.find("a[data-value=" + t.defaultCity.cityId + "]").click())
+			},
+			setValue: function(t) {
+				var e = this;
+				e.$provincetabcontent.find("a[data-value=" + t.provinceId + "]").click(),
+						e.$citytabcontent.find("a[data-value=" + t.cityId + "]").click()
+			},
+			getValue: function() {
+				var t = this
+						, e = {};
+				return e.provincevalue = t.$selectcityvalue.data("provincevalue"),
+						e.cityvalue = t.$selectcityvalue.data("cityvalue"),
+						e
+			},
+			initprovincedata: function(t) {
+				var e = this;
+				e.$provincetabcontent.find("ul").empty();
+				for (var a = "", i = 0; i < e.data.length; i++)
+					a += t && t == e.data[i].value ? '<li class="current"><a data-value="' + e.data[i].value + '" href="#">' + e.data[i].text + "</a></li>" : '<li><a data-value="' + e.data[i].value + '" href="#">' + e.data[i].text + "</a></li>";
+				e.$provincetabcontent.find("ul").append(a)
+			},
+			initcitydata: function(t, e) {
+				var a = this;
+				a.$citytabcontent.find("ul").empty();
+				for (var i = "", c = 0; c < t.length; c++)
+					i += e && t[c].value == e ? '<li class="current"><a data-value="' + t[c].value + '" href="#">' + t[c].text + "</a></li>" : '<li><a data-value="' + t[c].value + '" href="#">' + t[c].text + "</a></li>";
+				a.$citytabcontent.find("ul").append(i)
+			},
+			getCityData: function(t) {
+				for (var e = this, a = 0; a < e.data.length; a++)
+					if (e.data[a].value == t)
+						return e.data[a].city;
+				return []
+			}
+		},
+				$.fn.selectcity = function(e) {
+					return this.each(function() {
+						var a = $(this)
+								, i = a.data("selectcity");
+						if (!i) {
+							var c = $.extend({}, $.fn.selectcity.defaults, a.data(), "object" == typeof e && e);
+							a.data("selectcity", new t(this,c))
+						}
+					})
+				}
+				,
+				$.fn.selectcity.defaults = {}
+	}();
+</script>
+<script>
+	$("#selectcity").selectcity({
+		data: citydata,
+		defaultcity: {
+			cityId:"140400",
+			provinceId:	"山西"
+		}
+	})
+</script>
+</html>

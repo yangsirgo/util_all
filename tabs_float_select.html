@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="gbk1312">
+	<title>Title</title>
+	<link rel="stylesheet"
+	      href="http://x.autoimg.cn/com/co.ashx?path=|mall|2015|pc|css|common-26811.css,|mall|2015|pc|css|detail-63304.css">
+	<script src="http://js.xcar.com.cn/common/1.7.2.min.js"></script>
+	<style>
+		.detail-main .tab {
+			background-color: #e62727;
+		}
+
+		.detail-main {
+			float: left;
+		}
+
+	</style>
+</head>
+<body style="height: 2600px">
+<div style="height: 600px"></div>
+<div class="detail-main">
+	<div id="detailTab" class="tab" data-trigger="click">
+		<ul class="fn-clear">
+			<li data-target="#detailDescription" class="tab-item current"><a href="javascript:void(0)" target="_self">商品介绍</a>
+			</li>
+			<li data-target="#detailParameter" class="tab-item" id="detailParamConfTabMenu"><a href="javascript:void(0)"
+			                                                                                   target="_self"
+			                                                                                   id="paramconf">活动说明</a>
+			</li>
+			<li data-target="#detailComment" class="tab-item" id="detailEvaluationTabMenu"><a href="javascript:void(0)"
+			                                                                                  target="_self">参数配置</a>
+			</li>
+		</ul>
+		<div class="detail-tab-btn fn-clear">
+			<a id="btnSmallGray" class="btn btn-gray btn-small" href="javascript:void(0);" target="_self"
+			   style="display: none;">已下架</a>
+			<a id="btnSmallBuy" href="javascript:void(0);" class="btn btn-red btn-small" target="_self"
+			   style="display: none;">立即抢购</a>
+			<a id="btnSmallSaleWarn" href="javascript:void(0);" class="btn btn-yellow btn-small" target="_self"
+			   style="display: none;">开售提醒</a>
+		</div>
+	</div>
+	<div class="tab-content">
+		<!--<ul>-->
+			<div id="detailDescription" class="tab-content-item current">
+				<div class="detail-description">
+					<div class="detail-model">
+						<div class="detail-model-title">
+							适用车型
+
+						</div>
+						<div class="detail-model-subtitle">
+							Models
+
+						</div>
+						<div class="detail-model-content">
+							<!--两列的情况-->
+							<table>
+								<colgroup>
+									<col style="width: 500px">
+									<col>
+								</colgroup>
+								<tbody>
+								<tr>
+									<th>车型名称
+									</th>
+									<th>厂商指导价
+									</th>
+								</tr>
+								<tr>
+									<td>2017款 1.5T 自动智尊型</td>
+									<td>11.39万</td>
+								</tr>
+								<tr>
+									<td>2017款 1.5T 自动智慧型</td>
+									<td>10.19万</td>
+								</tr>
+								<tr>
+									<td>2017款 1.5T 自动智享型</td>
+									<td>10.79万</td>
+								</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="detail-description-content" id="installmentList">
+					</div>
+					<div class="detail-description-content" id="detailItemDescription">
+						<p>
+							<img src="https://mall3.autoimg.cn/malldfs/g22/M10/AD/F9/autohomecar__wKgFW1mTry2AUlSxAAG2dCOdEFM790.jpg"><img
+								src="https://mall3.autoimg.cn/malldfs/g16/M0C/37/65/autohomecar__wKgH11mTry2AJkzsAAGJpRGUkbs515.jpg">
+						</p>
+					</div>
+				</div>
+			</div>
+			<div id="detailParameter" class="tab-content-item">
+				<div class="detail-tab-select">
+					<dl class="fn-clear">
+						<dd>
+							<div class="select select-small select-car" style="z-index: 10;">
+								<div class="select-value">
+									<span> </span>
+									<i></i>
+								</div>
+								<div class="select-list fn-hide" style="display: none;">
+									<ul>
+										<li><a data-value="30311" spec-name="2017款 1.5T 自动智尊型"
+										       href="javascript:void(0);">2017款 1.5T 自动智尊型（指导价：11.39万）</a></li>
+										<li><a data-value="31257" spec-name="2017款 1.5T 自动智慧型"
+										       href="javascript:void(0);">2017款 1.5T 自动智慧型（指导价：10.19万）</a></li>
+										<li><a data-value="31258" spec-name="2017款 1.5T 自动智享型"
+										       href="javascript:void(0);">2017款 1.5T 自动智享型（指导价：10.79万）</a></li>
+										<li><a data-value="30301" spec-name="2017款 1.5T 自动智尊型"
+										       href="javascript:void(0);">2017款 1.5T 自动智尊型（指导价：11.39万）</a></li>
+										<li><a data-value="3120" spec-name="2017款 1.5T 自动智慧型"
+										       href="javascript:void(0);">2017款 1.5T 自动智慧型（指导价：10.19万）</a></li>
+										<li><a data-value="3120" spec-name="2017款 1.5T 自动智享型"
+										       href="javascript:void(0);">2017款 1.5T 自动智享型（指导价：10.79万）</a></li>
+										<li><a data-value="3030" spec-name="2017款 1.5T 自动智尊型"
+										       href="javascript:void(0);">2017款 1.5T 自动智尊型（指导价：11.39万）</a></li>
+										<li><a data-value="3057" spec-name="2017款 1.5T 自动智慧型"
+										       href="javascript:void(0);">2017款 1.5T 自动智慧型（指导价：10.19万）</a></li>
+										<li><a data-value="058" spec-name="2017款 1.5T 自动智享型"
+										       href="javascript:void(0);">2017款 1.5T 自动智享型（指导价：10.79万）</a></li>
+									</ul>
+								</div>
+							</div>
+						</dd>
+						<dt>选择车型：</dt>
+					</dl>
+				</div>
+				<div class="detail-cs fn-clear" id="detailParameterData" style="display:none">
+					<div class="detail-cs-tip">
+						注：以下参数配置信息仅供参考，实际参数配置信息以店内销售车辆为准，解释权归生产厂家所有。
+					</div>
+					<div id="detail-cs-menu" class="detail-cs-menu">
+						<ul id="paramConfUL">
+							<li id="paramConfMiddleLi" style="display:none"></li>
+							<li id="paramConfBottomLi" style="display:none"></li>
+						</ul>
+					</div>
+					<div class="detail-cs-grid">
+						<table id="paramConfTable">
+							<tbody>
+							<tr id="paramConfMiddleTr" style="display:none"></tr>
+							<tr id="paramConfBottomTr" style="display:none"></tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div id="detailParameterNoResult" class="detail-noresult" style="display:none">
+				</div>
+				<div class="detail-loading">
+				</div>
+			</div>
+			<div id="detailComment" class="tab-content-item">
+				<div class="comment" id="detailCommentData" style="display:none">
+					<div class="comment-header" style="display:none;" id="detailCommentHeader">
+						<div class="comment-header-top">
+							用户评分：<span class="score"><b id="commentScoreD" style=""></b></span><span
+								class="comment-header-score" id="commentScoreShow"></span><span
+								class="comment-header-unit">分</span>
+						</div>
+						<div class="comment-header-main">
+							<dl class="fn-clear">
+								<dt>参与人数：</dt>
+								<dd><b id="commentJoinNums"></b>人</dd>
+							</dl>
+							<dl class="fn-clear">
+								<dt>排名：</dt>
+								<dd>第<b id="commentRank"></b>名
+									<small>（该级别共<span id="commentSeriesNumInLevel"></span>个车系）</small>
+								</dd>
+							</dl>
+						</div>
+					</div>
+					<ul class="comment-list" id="commentList">
+
+					</ul>
+					<div id="detailCommentPager"></div>
+				</div>
+				<div id="detailCommentNoResult" class="detail-noresult" style="display:none">
+				</div>
+				<div class="detail-loading">
+				</div>
+			</div>
+		<!--</ul>-->
+	</div>
+</div>
+</body>
+<script>
+	!function () {
+		"use strict";
+		function e(e, t) {
+			var o = this;
+			o.$element = e,
+					o.$window = $(window),
+					o.$parent = e.parent(),
+					o.parentTop = null,
+					o.offset = t.offset,
+					o.compareBottomOffset = t.compareBottomOffset,
+					o.compareTopOffset = t.compareTopOffset,
+					o.$bottomCompare = t.$bottomCompare,
+					o.bottomCompare = null,
+					o.elementHeight = null,
+					o.bottomCompareHeight = null,
+					o.timer = null,
+					o.init()
+		}
+
+		e.prototype = {
+			init: function () {
+				var e = this;
+				e.$window.on("scroll", function () {
+					e.$element.is(":visible") && (e.getDataWhenVisible(),
+							clearTimeout(e.timer),
+							e.timer = setTimeout(function () {
+								var t = e.$window.scrollTop();
+								if (e.$bottomCompare && t > e.bottomCompare) {
+									var o = e.bottomCompareHeight - e.elementHeight + e.compareBottomOffset;
+									0 > o && (o = 0),
+											e.$element.css({
+												top: o
+											}),
+											e.$element.removeClass("fixed"),
+											e.$element.trigger("reset")
+								} else
+									t > e.parentTop - e.offset ? (e.$element.addClass("fixed"),
+											e.$element[0].style.cssText = "") : (e.$element.removeClass("fixed"),
+											e.$element[0].style.cssText = "",
+											e.$element.trigger("reset"))
+							}, 20))
+				}).trigger("scroll")
+			},
+			getDataWhenVisible: function () {
+				var e = this;
+				!e.parentTop && e.$element.is(":visible") && (e.parentTop = e.$parent.offset().top,
+				e.$bottomCompare && (e.elementHeight = e.$element.outerHeight(),
+						e.bottomCompareHeight = e.$bottomCompare.outerHeight(),
+						e.bottomCompareTop = e.$bottomCompare.offset().top,
+						e.bottomCompare = e.bottomCompareTop + e.bottomCompareHeight - e.compareTopOffset - e.elementHeight + e.compareBottomOffset))
+			}
+		},
+				$.fn.floatbar = function (t) {
+					return this.each(function () {
+						var o = $(this)
+								, m = o.data("floatbar")
+								, a = $.extend({}, $.fn.floatbar.defaults, o.data(), "object" == typeof t && t);
+						m || o.data("floatbar", m = new e($(this), a))
+					})
+				}
+				,
+				$.fn.floatbar.defaults = {
+					offset: 0,
+					compareTopOffset: 0,
+					compareBottomOffset: 0
+				}
+	}();
+	!function () {
+		"use strict";
+		function t(t, e) {
+			var a = this;
+			a.delay = e.delay,
+					a.trigger = e.trigger,
+					a.$element = $(t),
+					a.$tabItem = $(e.tabitem, a.$element);
+			var n = $(a.$tabItem.data("target"));
+			a.$tabContentItem = n.add(n.siblings()),
+					a.showTimer = null,
+					a.hideTimer = null,
+					a.init()
+		}
+
+		t.prototype = {
+			init: function () {
+				var t = this
+						, e = function (e) {
+					var a = $(e.data("target"));
+					t.$tabItem.removeClass("current"),
+							e.addClass("current"),
+							t.$tabContentItem.removeClass("current"),
+							a.addClass("current"),
+							t.$element.trigger("changed", {
+								text: e.text(),
+								value: e.data("value")
+							})
+				};
+				"hover" == t.trigger ? t.$tabItem.on("mouseenter", function () {
+					var a = $(this);
+					t.showTimer = setTimeout(function () {
+						e(a)
+					}, t.delay)
+				}).on("mouseleave", function () {
+					clearTimeout(t.showTimer)
+				}) : t.$tabItem.on("click", function () {
+					return e($(this)),
+							!1
+				})
+			},
+			show: function () {
+				this.$target.show(),
+						this.$arrow.addClass("active")
+			},
+			hide: function () {
+				this.$target.hide(),
+						this.$arrow.removeClass("active")
+			}
+		},
+				$.fn.tab = function (e) {
+					return this.each(function () {
+						var a = $(this)
+								, n = a.data("tab")
+								, i = $.extend({}, $.fn.tab.defaults, a.data(), "object" == typeof e && e);
+						n || a.data("tab", n = new t(this, i))
+					})
+				}
+				,
+				$.fn.tab.defaults = {
+					trigger: "hover",
+					delay: 100,
+					tabitem: ".tab-item"
+				}
+	}();
+	!function () {
+		var e = function (e, t) {
+			var l = this;
+			l.options = t,
+					l.$elem = e,
+					l.$select = $(".select-value", e),
+					l.$selectSpan = $("span", l.$select),
+					l.$list = $(".select-list", e),
+					l.$ul = l.$list.find("ul"),
+					l.init()
+		};
+		e.prototype = {
+			constructor: e,
+			init: function () {
+				var e = this;
+				e.$select.on("click", $.proxy(e.show, e)),
+						e.$list.on("click", "a", $.proxy(function (t) {
+							var l = $(t.target);
+							return e.setValue(l.data("value")),
+									this.hide(),
+									!1
+						}, e)),
+						$(document).on("click.select.body", function (t) {
+							var l = $(t.target).closest(e.$elem);
+							0 == l.length && e.hide()
+						}),
+				e.options.data && e.setData(e.options.data)
+			},
+			setData: function (e) {
+				var t = e.data
+						, l = e.placeholder
+						, a = e.value
+						, s = this;
+				s.$ul.empty();
+				for (var n = "", i = 0; i < t.length; i++)
+					n += '<li><a href="#" data-value="' + t[i].value + '">' + t[i].text + "</a></li>";
+				s.$ul.html(n),
+						null != a ? s.setValue(a) : s.setPlaceholder(l)
+			},
+			setValue: function (e) {
+				var t = this
+						, l = this.getValue()
+						, a = this.$ul.find("li a[data-value='" + e + "']")
+						, s = a.text();
+				e != l.value && (this.options.onChanging ? this.options.onChanging({
+					text: s,
+					value: e,
+					change: function () {
+						t.$selectSpan.text(s),
+								t.$select.removeClass("default"),
+								t.$selectSpan.data("value", e),
+								t.$elem.trigger("changed", {
+									text: s,
+									value: e
+								}),
+								t.$ul.find("li").removeClass("current"),
+								a.parent().addClass("current")
+					}
+				}) : (t.$selectSpan.text(s),
+						t.$select.removeClass("default"),
+						t.$selectSpan.data("value", e),
+						t.$elem.trigger("changed", {
+							text: s,
+							value: e
+						}),
+						t.$ul.find("li").removeClass("current"),
+						a.parent().addClass("current")))
+			},
+			setPlaceholder: function (e) {
+				this.$selectSpan.text(e),
+						this.$select.addClass("default"),
+						this.$selectSpan.data("value", null),
+						this.$ul.find("li").removeClass("current")
+			},
+			getElement: function () {
+				return this.$elem[0]
+			},
+			getValue: function () {
+				return {
+					text: this.$selectSpan.text(),
+					value: this.$selectSpan.data("value")
+				}
+			},
+			show: function () {
+				var e = this;
+				e.$elem.hasClass("select-disabled") || (e.$elem.css("zIndex", 11),
+						e.$elem.addClass("active").trigger("show", e),
+						e.$list.show(),
+				0 == e.$elem.find(".select-list li:visible").length && e.$list.hide())
+			},
+			hide: function () {
+				this.$elem.css("zIndex", 10),
+						this.$list.hide(),
+						this.$elem.removeClass("active").trigger("hide", this)
+			},
+			disabled: function () {
+				that.$elem.hasClass("select-disabled") ? that.$elem.removeClass("select-disabled") : that.$elem.addClass("select-disabled")
+			}
+		},
+				$.fn.select = function (t) {
+					return this.each(function () {
+						var l = $(this)
+								, a = l.data("select")
+								, s = $.extend({}, $.fn.select.defaults, l.data(), t);
+						a || l.data("select", a = new e(l, s)),
+						"string" == typeof t && a[t]()
+					})
+				}
+				,
+				$.fn.select.defaults = {
+					onChanging: null
+				}
+	}();
+</script>
+<script>
+	$("#detailTab").floatbar();
+	$("#detailTab").tab().on("changed", function () {
+		$("#detailTab").hasClass("fixed") && $(window).scrollTop($("#detailTab").parent().offset().top)
+	});
+	$('.select-car').select()
+	/*
+	 * 设置select_city 初始值
+	 * */
+	var a = $(".select-car").data("select");
+	a.setValue($(".select-car").find("li:eq(0)").find("a").attr("data-value"));
+</script>
+<script>
+	/*
+	 * 判断抢购状态
+	 * */
+	var __ITEM_STATUS = 2;
+	"2" != __ITEM_STATUS ? setBtnDown() : setBtnUp();
+	function setBtnUp() {
+		$("#btnGray,#btnSmallGray").hide(),
+				$("#btnBuy,#btnSmallBuy").show(),
+				$("#btnSaleWarn,#btnSmallSaleWarn").hide()
+	}
+	function setBtnDown() {
+		$("#btnGray,#btnSmallGray").show().removeAttr("href"),
+				$("#btnBuy,#btnSmallBuy").hide(),
+				$("#btnSaleWarn,#btnSmallSaleWarn").hide()
+	}
+</script>
+</html>

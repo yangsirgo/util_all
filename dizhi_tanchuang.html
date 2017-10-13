@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="http://icon.xcar.com.cn/zym/landed/css/login.css?t=20161026">
+    <link rel="stylesheet" href="http://icon.xcar.com.cn/sq2015/2015dami/css/index.css?1504232747">
+    <link rel="stylesheet" href="css/login.css">
+    <style>
+        #wBox_overlay,.wBox_hide {
+            z-index: -100;
+        }
+    </style>
+    <script src="http://js.xcar.com.cn/common/1.7.2.min.js"></script>
+</head>
+<body>
+<button id="adr_modify">修改地址</button>
+</body>
+<script src='http://my.xcar.com.cn/js/jquery-provincecity.js' charset='gb2312'></script>
+<script src="http://my.xcar.com.cn/js/wbox.js?v=20170704"></script>
+<script>
+
+$('#adr_modify').click(function(){
+    goods_exchange(this,2568,4,'Xcar精美车标（银色）','18','10880404');
+})
+
+
+    var AJAX_CONFIG = {
+        ajax_check_giftExchange:"./json/ajax_check_giftExchange.json",
+        gift_detail:"./json/gift_detail_province.json",
+        address_Posturl:'./json/gift_detail_province.json'
+    }
+
+    function goods_exchange(obj,gid, category_id, goods_name, coin ,uid){
+        if(exchange_btn == 0){
+            exchange_btn = 1;
+            $.ajax({
+                type : "POST",
+                url : AJAX_CONFIG.ajax_check_giftExchange,
+                data : "action=check&gid="+gid+"&uid="+uid,
+                async : false,
+                dataType : 'JSON',
+                success : function(data){
+                    if(data.flag == 7){
+                        var html = '';
+                        html += '<div class="layer address_box">';
+                        html += '<div class="bg" >';
+                        html += '<table border="0" cellspacing="0" cellpadding="0">';
+                        html += '<tbody><tr>';
+                        html += '<td>';
+                        html += '<div class="content">';
+                        html += '<div class="title">';
+
+                        if(category_id == 2){
+                            html += '<span>系统提示</span>';
+                        }else{
+                            html += '<span>请确认收货地址</span>';
+                        }
+
+                        html += '<a node-type="close" title="关闭" class="close wBox_close" href="javascript:void(0);" id="close_address"></a>';
+                        html += '</div>';
+                        html += '<div class="psw_con pop_cbox" >';
+                        //html += '<form id="form1" action="address.php?action=add" method="post" style="padding-bottom: 10px;">';
+                        //html += '<input type="hidden" id="type" name="type" value="edit">';
+                        //html += '<input type="hidden" id="id" name="id" value="18038">';
+                        if(category_id != 2) {
+                            html += '<table cellspacing="0" cellpadding="0">';
+                            html += '<tbody>';
+                            html += '<tr>';
+                            html += '<td class="td_lt"><i>*</i>收 货 人：</td>';
+                            html += '<td>';
+                            html += '<input type="text" id="uname" name="uname" class="int_wth int_wth2" onblur="try{chk_uname();}catch(e){}" value="' + (data.address.address_user ? data.address.address_user : '') + '">';
+                            html += '<span class="error_txt" id="uname_msg"></span>';
+                            html += '</td></tr>';
+                            html += '<tr>';
+                            html += '<td class="td_lt"><i>*</i>手机号码：</td>';
+                            html += '<td>';
+                            html += '<input type="text" id="phone" name="phone" onblur="try{chk_phone();}catch(e){}" class="int_wth int_wth2" value="' + (data.address.iphone ? data.address.iphone : '') + '">';
+                            html += '<span class="error_txt" id="phone_msg" ></span>';
+                            html += '</td></tr>';
+                            html += '<tr>';
+                            html += '<td class="td_lt"><i>*</i>所在地区：</td>';
+                            html += '<td class="select_wit2" id="ProvCity">';
+                            html += '<input type="hidden" id="sheng_id" name="sheng_id" value="' + (data.address.provinces_id ? data.address.provinces_id : 0) + '">';
+                            html += '<input type="hidden" id="shi_id" name="shi_id" value="' + (data.address.city_id ? data.address.city_id : 0) + '">';
+                            html += '<input type="hidden" id="xian_id" name="xian_id" value="' + (data.address.county_id ? data.address.county_id : 0) + '">';
+                            html += '<span id="select_msg"><span class="error_txt"></span></span>';
+                            html += '</td></tr>';
+                            html += '<tr>';
+                            html += '<td class="td_lt"><i>*</i>详细地址：</td>';
+                            html += '<td><input type="text" id="address" name="address" onblur="try{chk_address();}catch(e){}" class="int_wth int_wth3" value="' + (data.address.address ? data.address.address : '') + '">';
+                            html += '<span id="address_msg" class="error_txt"><span class="error_txt">请填写详细地址</span></span>';
+                            html += '</td></tr>';
+                            html += '<tr>';
+                            html += '<td class="td_lt"><i>*</i>邮政编码：</td>';
+                            html += '<td>';
+                            html += '<input type="text" id="postid" name="postid" onblur="try{chk_postid();}catch(e){}" class="int_wth int_wth2" value="' + (data.address.zip ? data.address.zip : '') + '">';
+                            html += '<span class="error_txt" id="postid_msg"><span class="error_txt">请填写正确的邮政编码</span></span>';
+                            html += '</td></tr>';
+                            html +='<tr><td class="td_lt">&nbsp;</td><td class="default"><span><input type="checkbox">&nbsp;设为默认收货地址</span><a class="btn_a" href="javascript:void(0);" onclick="check_form_address(this,'+gid+','+uid+','+category_id+');return false;">确定</a></td></tr>'
+                            html += '</tbody></table>';
+                            //html += '</form>';
+                        }
+                        html += '</div></div></td></tr></tbody></table>';
+                        html += '</div></div>';
+
+                        showhtml(html);
+
+                        var location = new Object();
+                        location.province_id = data.address.provinces_id ? data.address.provinces_id : 0;
+                        location.city_id     = data.address.city_id ? data.address.city_id : 0;
+                        location.country_id  = data.address.county_id ? data.address.county_id : 0;
+                        location.pname = data.address.pname ? data.address.pname : '请选择';
+                        location.cname = data.address.cname ? data.address.cname : '';
+                        location.xname = data.address.xname ? data.address.xname : '';
+                        $("#ProvCity").ProvinceCity("add_province", "add_city", "add_county",location,'gift');
+                    }
+                }
+            })
+        }
+
+        $("#btn_a").click(function(){
+            window.location.reload();
+        })
+    }
+
+    function showhtml(html){
+        var exchange = $().wBox({html:html,drag:false,top:180});
+        exchange.showBox();
+        exchange_btn = 0;
+    }
+    function chk_uname(){
+        var uname = $('#uname').val();
+        if(uname != '' ){
+            if(strnum(uname) > 20 || strnum(uname) < 2){
+                $('#uname_msg').html('请输入2-20个字符！');
+                $('#uname_msg').parent().parent().addClass('error');
+                throw 1;
+            }else{
+                $('#uname_msg').parent().parent().removeClass('error');
+            }
+        }else{
+            $('#uname_msg').html('请输入正确姓名');
+            $('#uname_msg').parent().parent().addClass('error');
+            throw 1;
+        }
+    }
+
+    function chk_address(){
+        var address = $('#address').val();
+        if(address != ''){
+            if(strnum(address) > 60 || strnum(address) < 5){
+                $('#address_msg').html('请输入5-60个字符！');
+                $('#address_msg').parent().parent().addClass('error');
+                throw 1;
+            }else{
+                $('#address_msg').parent().parent().removeClass('error');
+            }
+        }else{
+            $('#address_msg').html('收货地址不能为空！');
+            $('#address_msg').parent().parent().addClass('error');
+            throw 1;
+        }
+    }
+
+    function chk_phone(){
+        var phone = $('#phone').val();
+        if(phone != ''){
+            if(!phone.match(/^1[34578][\d]{9}$/)){
+                $('#phone_msg').html('请填写11位手机号码！');
+                $('#phone_msg').parent().parent().addClass('error');
+                throw 1;
+            }else{
+                $('#phone_msg').parent().parent().removeClass('error');
+            }
+        }else{
+            $('#phone_msg').html('手机号码不能为空！');
+            $('#phone_msg').parent().parent().addClass('error');
+            throw 1;
+        }
+    }
+
+    function chk_postid(){
+        var postid = $('#postid').val();
+        if(postid != '' ){
+            if(!postid.match(/^\d{6}$/)){
+                $('#postid_msg').html('请填写6位数字邮政编码！');
+                $('#postid_msg').parent().parent().addClass('error');
+                throw 1;
+            }else{
+                $('#postid_msg').parent().parent().removeClass('error');
+            }
+        }else{
+            $('#postid_msg').html('邮编选项不能为空！');
+            $('#postid_msg').parent().parent().addClass('error');
+            throw 1;
+        }
+    }
+
+    function chk_city(){
+        //alert($("#ProvinceCity").find('.selectem').length);
+        $("#shop_address").find('.selectem').each(
+                function(){
+                    //alert($(this).text());
+                    if($(this).text() == '请选择'){
+                        if($(this).attr('id') == 'sheng'){
+                            $('#select_msg').html('请选择省份！');
+                            $('#select_msg').parent().parent().addClass('error');
+                            throw 1;
+                        }
+                        if($(this).attr('id')=='shi'){
+                            $('#select_msg').html('请选择城市！');
+                            $('#select_msg').parent().parent().addClass('error');
+                            throw 1;
+                        }
+                    }else{
+                        $('#select_msg').parent().parent().removeClass('error');
+                    }
+                }
+        )
+    }
+
+    function strnum(str) {
+        var strlen = 0;
+        for (var i = 0; i < str.length; i++) {
+            if (str.charCodeAt(i) > 128) {
+                strlen += 2;
+            } else {
+                strlen++;
+            }
+        }
+        return strlen;
+    }
+    function check_form_address(obj,gid, uid, category_id){
+
+                    chk_uname();
+                    chk_city();
+                    chk_address();
+                    chk_postid();
+                    chk_phone();
+                    var uname = $("#uname").val();
+                    var phone = $("#phone").val();
+                    var zip = $("#postid").val();
+                    var address = $("#address").val();
+                    var province = $("#sheng").html();
+                    var city = $("#shi").html();
+                    var country = $("#xian").html();
+                    var province_id = $('#sheng_id').val();
+                    var city_id = $('#shi_id').val();
+                    var country_id = $('#xian_id').val();
+                    var is_myxcar_address = $(':radio[checked=true]').val();
+                    if (country == '请选择') {
+                        country = '';
+                    }
+                    $.ajax({
+                        type: "POST",
+                        url: AJAX_CONFIG.address_Posturl,
+                        data: "uid=" + uid + "&gid=" + gid + "&uname=" + uname + "&phone=" + phone + "&postid=" + zip + "&address=" + address + "&province=" + province + "&city=" + city + "&country=" + country + "&province_id=" + province_id + "&city_id=" + city_id + "&country_id=" + country_id + '&is_myxcar_address=' + is_myxcar_address+'&category_id='+category_id,
+                        dataType: "JSON",
+                        async : false,
+                        success: function (data) {
+                            is_exchange = 0;
+                            $('#lucency_shade').remove();
+                            $('#wBox').remove();
+                        }
+                    })
+    }
+
+
+
+</script>
+<script>
+    $.fn.ProvinceCity = function(province_name, city_name, county_name,results,type) {
+        var _self = this;
+        var page = (type == 'pvc') ? "pvc.php" : (type == 'gift') ?AJAX_CONFIG.gift_detail  :"address.php";
+
+        _self.data("province",["请选择", 0]);
+        _self.data("city",["请选择", 0]);
+        _self.data("county",["请选择", 0]);
+
+
+        if(results == '' || results == undefined)
+        {
+            _self.data("province_id", 0);
+            _self.data("city_id", 0);
+            _self.data("country_id", 0);
+        }
+        else
+        {
+            _self.data("province_id", results.province_id);
+            _self.data("city_id", results.city_id);
+            _self.data("country_id", results.country_id);
+            _self.data("province",[results.pname, results.province_id]);
+            _self.data("city",[results.cname ? results.cname : "请选择" , results.city_id]);
+            _self.data("county",[results.xname ? results.xname : "请选择" , results.country_id]);
+        }
+
+        _self.append("<div onchange='changeitem(this,"+type+")' id='"+province_name+"' name='"+province_name+"' class='selectbox basic_select'><div class='selecttxt'></div></div>");
+        _self.append("<div onchange='changeitem(this,"+type+")' id='"+city_name+"' name='"+city_name+"' class='selectbox basic_select'><div class='selecttxt'></div></div>")
+        // _self.append("<div style='width: 100px;' id='"+city_name+"' name='"+city_name+"' ></select>");
+        _self.append("<div onchange='changeitem(this,"+type+")' id='"+county_name+"' name='"+county_name+"' class='selectbox basic_select'><div class='selecttxt'></div></div>");
+        _self.append("<span id='select_msg'></span>");
+
+        var $sel1 = _self.find("div .selecttxt").eq(0);
+        var $sel2 = _self.find("div .selecttxt").eq(1);
+        var $sel3 = _self.find("div .selecttxt").eq(2);
+
+
+        if(_self.data("province")){
+            $sel1.append("<div id='sheng' class='selectem' value='"+_self.data("province")[1]+"'>"+_self.data("province")[0]+"</div>");
+
+            $.get(page+'?c=ajax&m=getCityMenu',{ grade: 1, 'selected_id':_self.data("province_id"), 'rand': Math.random()},function(data){
+
+                $("#"+province_name).replaceWith("<div class='selectbox basic_select' id='"+province_name+"' name='"+province_name+"' ><div class='selecttxt'><div id='sheng' class='selectem' onchange=\"changeitem(this"+type+")\" value='"+_self.data("province")[1]+"'>"+_self.data("province")[0]+"</div></div><div class='option' style='display: none;'><ul id='add_p'>"+data['res']+"</ul></div>");
+
+                $sel1 = $("#"+province_name);
+                pub_fun();
+            },'json');
+        }
+
+
+        if(_self.data("city")){
+            $sel2.append("<div id='shi' class='selectem' value='"+_self.data("city")[1]+"'>"+_self.data("city")[0]+"</div>");
+            if(_self.data("province_id") != 0)
+            {
+                $.get(page+'?c=ajax&m=getCityMenu',{ 'grade': 2, 'id': _self.data("province_id"), 'selected_id':_self.data("city_id"), 'rand': Math.random() },function(data){
+
+                    $("#"+city_name).replaceWith("<div class='selectbox basic_select' id='"+city_name+"' name='"+city_name+"' ><div class='selecttxt'><div id='shi' class='selectem' value='"+_self.data("city")[1]+"'>"+_self.data("city")[0]+"</div></div><div class='option' style='display: none;'><ul  id='add_c'>"+data['res']+"</ul></div>");
+                    pub_fun();
+                },'json');
+            }
+        }
+
+
+        if(_self.data("county")){
+            $sel3.append("<div id='xian' class='selectem' value='"+_self.data("county")[1]+"'>"+_self.data("county")[0]+"</div>");
+            if(_self.data("city_id") != 0)
+            {
+                $.get(page+'?c=ajax&m=getCityMenu',{ 'grade': 3, 'id': _self.data("city_id"), 'selected_id':_self.data("country_id"), 'rand': Math.random() },function(data){
+                    $("#"+county_name).replaceWith("<div class='selectbox basic_select' id='"+county_name+"' name='"+county_name+"' ><div class='selecttxt'><div id='xian' class='selectem' value='"+_self.data("county")[1]+"'>"+_self.data("county")[0]+"</div></div><div class='option' style='display: none;'><ul id='add_x'>"+data['res']+"</ul></div>");
+                    pub_fun();
+                },'json');
+            }
+        }
+        return _self;
+    };
+
+    function changeitem(obj,type)
+    {
+        var self_name = $(obj).parent().attr("id");
+
+        var id2 = $(obj).find('a').attr("value");
+        var page = (type == 'pvc') ? "pvc.php" : (type == 'gift') ? AJAX_CONFIG.gift_detail :"address.php";
+        if(self_name == "add_p")
+        {
+            $.get(page+'?c=ajax&m=getCityMenu',{ 'grade':2,'id':id2, 'rand':Math.random()  },function(data){
+                $("#add_city").replaceWith("<div class='selectbox basic_select' id='add_city' name='add_city' ><div class='selecttxt'><div id='shi' class='selectem' value='0'>请选择</div></div><div class='option' style='display: none;'><ul id='add_c'>"+data['res']+"</ul></div>");
+                pub_fun();
+            },'json');
+        }
+        else if(self_name == "add_c")
+        {
+            $.get(page+'?c=ajax&m=getCityMenu',{ 'grade':3,'id':id2, 'rand':Math.random()  },function(data){
+                $("#add_county").replaceWith("<div class='selectbox basic_select' id='add_county' name='add_county' ><div class='selecttxt'><div id='xian' class='selectem' value='0'>请选择</div></div><div class='option' style='display: none;'><ul id='add_x'>"+data['res']+"</ul></div>");
+                pub_fun();
+            },'json');
+        }
+        else if(self_name == "add_county")
+        {
+            return;
+        }
+    }
+
+    function pub_fun()
+    {
+        var select_i=0;
+
+        $(".selectbox").hover(
+                function () {
+                    $(this).addClass("selectbox_hover");
+                },
+                function () {
+                    $(this).removeClass("selectbox_hover");
+                }
+        );
+        $(".option li").hover(
+                function () {
+                    $(this).addClass("active");
+                },
+                function () {
+                    $(this).removeClass("active");
+                }
+        );
+
+        $(".selecttxt").click(function(event){
+
+
+            if(select_i==1){
+                select_i=0;
+                var eo=$(event.target);
+                if($(".selectbox").is(":visible") && eo.attr("class")!="option" && !eo.parent(".option").length)
+                    $('.option').hide();
+                $(".selectbox").removeClass("selectbox_on");
+            }else{
+                select_i=1;
+                event.stopPropagation();
+                $(".selectbox").removeClass("selectbox_on");
+                $(this).parent().addClass("selectbox_on");
+                $(this).parent().find(".option").show();
+            }
+            /* 定义下拉内容最大高度 */
+            if($(this).siblings(".option").height()>=250){
+                $(this).siblings(".option").height(250);
+            }else{
+                $(this).siblings(".option").height('auto');
+            }
+
+        });
+
+        $(document).click(function(event){
+            select_i=0;
+            var eo=$(event.target);
+            if($(".selectbox").is(":visible") && eo.attr("class")!="option" && !eo.parent(".option").length)
+                $('.option').hide();
+            $(".selectbox").removeClass("selectbox_on");
+
+        });
+
+
+
+        $(".option li").click(function(){
+            var value=$(this).children("a").text();
+            var id   =$(this).children("a").attr('value');
+            var type =$(this).parents(".option").siblings(".selecttxt").children(".selectem").attr("id");
+            $("#"+type+"_id").attr('value',id);
+            $(this).parents(".option").siblings(".selecttxt").children(".selectem").text(value);
+            $(this).parents(".option").siblings(".selecttxt").children(".selectem").attr('value',id);
+            select_i=0;
+            $("#select_value").val(value);
+            $('.option').hide();
+            $(".selectbox").removeClass("selectbox_on");
+        });
+    }
+
+
+    $('#adr_modify').trigger('click');
+</script>
+</html>
