@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<button onclick="CloseWebPage()">点击关闭页面</button>
+</body>
+</html>
+<script>
+	function CloseWebPage(){
+
+		if (navigator.userAgent.indexOf("MSIE") > 0) {
+
+			if (navigator.userAgent.indexOf("MSIE 6.0") > 0) {    //适用于ie6不带提示关闭窗口
+
+				window.opener = null;
+
+				window.close();
+
+			} else {
+
+				window.open('', '_top');         //ie7之后不提示关闭窗口
+
+				window.top.close();
+
+			}
+
+		}
+
+		else if (navigator.userAgent.indexOf("Firefox") > 0) {        //Firefox不提示关闭窗口
+
+			window.location.href = 'about:blank ';
+
+		} else {
+
+			window.opener = null;
+
+			window.open('', '_self', '');        //其他浏览器
+
+			window.close();
+
+		}
+
+	}
+
+
+</script>
